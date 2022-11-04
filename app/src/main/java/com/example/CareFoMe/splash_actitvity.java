@@ -3,6 +3,7 @@ package com.example.CareFoMe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import java.util.Timer;
@@ -14,18 +15,30 @@ public class splash_actitvity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_actitvity);
+        final Intent Home=new Intent(splash_actitvity.this,NavigationDrawer.class);
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPref",MODE_PRIVATE);
+       String email = sharedPreferences.getString("Email","default");
+        String password = sharedPreferences.getString("Password","default");
+        if(email != "default"  && password != "default"){
 
-        TimerTask timerTask = new TimerTask()
-        {
-            @Override
-            public void run() {
-                startActivity(new Intent(splash_actitvity.this, MainPage.class));
+            startActivity(Home);
+            finish();
+
+        } else {
+            TimerTask timerTask = new TimerTask()
+            {
+                @Override
+                public void run() {
+                    startActivity(new Intent(splash_actitvity.this, MainPage.class));
 
 
-            }
-        };
-        Timer timer = new Timer();
-        timer.schedule(timerTask,5000);
+                }
+            };
+            Timer timer = new Timer();
+            timer.schedule(timerTask,5000);
+        }
+
+
     }
     }
 

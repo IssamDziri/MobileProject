@@ -1,6 +1,8 @@
 package com.example.CareFoMe;
 
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -19,6 +21,7 @@ DBHelper dr;
     SQLiteDatabase db;
     SQLiteOpenHelper openHelper;
     Cursor cursor;
+    SharedPreferences mSharedPref ;
 public static String eee;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +59,16 @@ public static String eee;
 
 
                 if(d2.checkUser(Email,Password)==true){
+
                     Toast.makeText(getApplicationContext(),"Login succesful ",Toast.LENGTH_LONG).show();
                    Bundle bundle = new Bundle();
+                    SharedPreferences sharedPreferences = getSharedPreferences("UserPref",MODE_PRIVATE);
+
+                    SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                    myEdit.putString("Email", Email);
+                    myEdit.putString("Password", Password);
+                    myEdit.commit();
+
 
                    // Intent intent = new Intent(LoginActivity.this, TimeSlots.class);
                     String Name="";
