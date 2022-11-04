@@ -44,6 +44,8 @@ DBHelper dd;
 
         ImageButton btn_doc = getView().findViewById(R.id.imageButtonDoc);
         ImageButton btn_phar = getView().findViewById(R.id.imageButtonPharm);
+        ImageButton btn_favoriteDoc = getView().findViewById(R.id.imageButtonDoc2);
+
 
 
         btn_doc.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +78,27 @@ DBHelper dd;
                 startActivity(intent);
 
 
+
+
+
+
+            }
+        });
+
+        btn_favoriteDoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                Intent intent=new Intent(getActivity(),DocFavorite.class);
+
+                intent.putExtra("username", username);
+                intent.putExtra("Email", email);
+
+
+
+                startActivity(intent);
 
 
 

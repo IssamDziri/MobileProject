@@ -1,5 +1,6 @@
 package com.example.CareFoMe;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +30,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ListViewHo
     DBHelper dbHelper;
     public static String mail ;
     public CustomAdapter(Context context, List dataList1,String u,String e) {
-
+        this.dbHelper= new DBHelper(context);
         this.context = context;
         this.dataList = dataList1;
         inflater = LayoutInflater.from(context);
@@ -55,7 +57,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ListViewHo
     }
 
     @Override
-    public void onBindViewHolder(ListViewHolder holder, int position) {
+    public void onBindViewHolder(final ListViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
 
         final String doc_name = dataList.get(position).name;
@@ -87,36 +89,23 @@ mail=email;
         holder.iv_whitefav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("#######################################"+dataList.get(position).name);
+                DoctorData fav = new DoctorData();
+                fav.doc_fav_id = dataList.get(position).id;
+                fav.email = dataList.get(position).phone;
+                fav.name_f = dataList.get(position).name;
+                DoctorData ddd = new DoctorData(fav.name_f, fav.email);
 
-                List<String[]> returnList = new ArrayList();
-
-                for (int i =1; i < returnList.size(); i++)
-                {
-
-                    DoctorData Doc = new DoctorData();
-                    Doc.id=Integer.parseInt(returnList.get(i)[0]);
-                    Doc.name= doc_name;
-                    Doc.email=mail;
-                    dbHelper.insertFavDocDetail(Doc);
+                System.out.println("#######################################"+fav);
+                long insertId=dbHelper.addHandler(ddd);
+                if(insertId==-1){
+                    System.out.println("nooooooooooooooooooooooooooooooooooooooooooooo");
                 }
+                else{
 
-
-                apt = new Intent(context,MainActivity.class);
-
-                apt.putExtra("username",username);
-                apt.putExtra("Email",email);
-                apt.putExtra("Doc Name",doc_name);
-
-
-
-
-
-                context.startActivity(apt);
-
-
-
-
-
+                    System.out.println("Record added");
+                }
+                System.out.println("#######################################"+fav);
             }
         });
 
@@ -133,7 +122,7 @@ mail=email;
     class ListViewHolder extends RecyclerView.ViewHolder {
         TextView tv_name;
         TextView tv_spec;
-        ImageView iv_book;
+        Button iv_book;
         ImageView iv_whitefav;
 
         public ListViewHolder(View itemView) {
@@ -142,7 +131,7 @@ mail=email;
             context = (Context)  itemView.getContext();
             tv_name = (TextView) itemView.findViewById(R.id.textViewTV);
             tv_spec = (TextView) itemView.findViewById(R.id.textViewSpec);
-            iv_book= (ImageView) itemView.findViewById(R.id.imageViewbook);
+            iv_book= (Button) itemView.findViewById(R.id.imageViewbook);
             iv_whitefav= (ImageView) itemView.findViewById(R.id.imageViewWhiteFav);
         }
     }

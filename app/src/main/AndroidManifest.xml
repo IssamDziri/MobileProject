@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.CareFoMe">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -31,7 +32,8 @@
         <activity
             android:name=".Pharmacy_MapsActivity"
             android:label="@string/title_activity_pharmacy__maps" />
-        <activity android:name=".splash_actitvity">
+        <activity android:name=".splash_actitvity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -44,7 +46,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Home"
-            android:label="Home" />
+            android:label="Home"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".DoctorsList"
             android:label="Doctors" />

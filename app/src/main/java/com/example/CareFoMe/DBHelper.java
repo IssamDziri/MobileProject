@@ -62,7 +62,8 @@ public class DBHelper extends SQLiteOpenHelper
         sqLiteDatabase.execSQL("create table "+ Table_name2+"(Appointment_id INTEGER PRIMARY KEY ,full_name TEXT ,Phone_Number Text,Doc_name TEXT,Email_Id TEXT ,ADate TEXT,ATime TEXT)");
         sqLiteDatabase.execSQL("CREATE TABLE "+Table_name3+"(doc_id INTEGER PRIMARY KEY,name TEXT NOT NULL,speciality TEXT NOT NULL,phone TEXT NOT NULL)");
         sqLiteDatabase.execSQL("CREATE TABLE "+Table_name4+"(doc_fav_id INTEGER PRIMARY KEY ,name_f TEXT NOT NULL, email TEXT NOT NULL)");
-
+        String CREATE_FAVORITE_TABLE = "CREATE TABLE " + Table_name4 + "(" + DOC_Fav_ID + " INTEGER PRIMARY KEY," + NAME_F + " TEXT ," + EMAIIL + " TEXT " +")";
+        db.execSQL(CREATE_FAVORITE_TABLE);
 
 
     }
@@ -79,7 +80,7 @@ public class DBHelper extends SQLiteOpenHelper
         sqLiteDatabase.execSQL("DROP TABLE "+Table_name);
         sqLiteDatabase.execSQL("DROP TABLE "+Table_name2);
         db.execSQL("DROP TABLE IF EXISTS " +Table_name3);
-        db.execSQL("DROP TABLE IF EXISTS " +Table_name4);
+        //db.execSQL("DROP TABLE IF EXISTS " +Table_name4);
         onCreate(sqLiteDatabase);
 
     }
@@ -89,6 +90,8 @@ public class DBHelper extends SQLiteOpenHelper
         sqLiteDatabase.execSQL("CREATE TABLE "+Table_name3+"(doc_id INTEGER PRIMARY KEY,name TEXT NOT NULL,speciality TEXT NOT NULL,phone TEXT NOT NULL)");
 
     }
+
+
 
     public void vider() {
         SQLiteDatabase sqLiteDatabase= this.getWritableDatabase();
@@ -268,6 +271,32 @@ public class DBHelper extends SQLiteOpenHelper
 
     }
 
+    public void insertfavorite(DoctorData userData) {
+
+        db = this.getWritableDatabase();
+        db.beginTransaction();
+        try{
+            ContentValues values = new ContentValues();
+            values.put(DOC_Fav_ID, userData.doc_fav_id);
+            values.put(NAME_F, userData.name_f);
+            values.put(EMAIIL, userData.email);
+
+
+
+
+            db.insert(Table_name4, null, values);
+            db.setTransactionSuccessful();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            Log.d(TAG, "Error while trying to add post to database");
+        } finally {
+
+            db.endTransaction();
+        }
+
+
+    }
 
     public void insertFavDocDetail(DoctorData userData) {
 
@@ -275,8 +304,8 @@ public class DBHelper extends SQLiteOpenHelper
         db.beginTransaction();
         try{
             ContentValues values = new ContentValues();
-            values.put(DOC_Fav_ID, userData.id);
-            values.put(NAME_F, userData.name);
+            values.put(DOC_Fav_ID, userData.doc_fav_id);
+            values.put(NAME_F, userData.name_f);
             values.put(EMAIIL, userData.email);
 
 
@@ -314,10 +343,10 @@ public class DBHelper extends SQLiteOpenHelper
                 while(!cursor.isAfterLast()){
                     UserData userData = new UserData();
 
-                    userData.id = cursor.getInt(cursor.getColumnIndex(DOC_ID));
-                    userData.name = cursor.getString(cursor.getColumnIndex(NAME));
-                    userData.speciality = cursor.getString(cursor.getColumnIndex(SPECIAL));
-                    userData.phone = cursor.getString(cursor.getColumnIndex(PHONE));
+                    userData.id = cursor.getInt(0);
+                    userData.name = cursor.getString(1);
+                    userData.speciality = cursor.getString(2);
+                    userData.phone = cursor.getString(3);
 
 
                     usersdetail.add(userData);
@@ -334,13 +363,48 @@ public class DBHelper extends SQLiteOpenHelper
 
     }
 
+    // insert in favorite
+    long addHandler(DoctorData d) {
+        long id;
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+d);
+        ContentValues values = new ContentValues();
+        values.put(DOC_Fav_ID, d.getDoc_fav_id());
+        values.put(NAME_F, d.getName_f());
+        values.put(EMAIIL, d.getEmail());
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        id = db.insert(Table_name4, null, values);
+        db.close();
+        return id;
+    }
+
+    String loadHandler() {
+        String result = "";
+        String query = "Select*FROM " + Table_name4;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            int result_0 = cursor.getInt(0);
+            String result_1 = cursor.getString(1);
+            String result_2 = cursor.getString(2);
+            result += String.valueOf(result_0) + " " + result_1 + " " + result_2 +
+                    System.getProperty("line.separator");
+        }
+        cursor.close();
+        db.close();
+        if(result.equals(""))
+            result="No Record Found";
+        return result;
+    }
+
+
 
     public List<DoctorData> getAllFavDoc()
     {
 
         List<DoctorData> doctorsdetail = new ArrayList<>();
 
-        String SELECT_QUERY = "SELECT * FROM " + Table_name4+"WHERE email ="+LoginActivity.eee;
+        String SELECT_QUERY = "SELECT * FROM Favorite";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(SELECT_QUERY, null);
@@ -352,11 +416,12 @@ public class DBHelper extends SQLiteOpenHelper
                 while(!cursor.isAfterLast()){
                     DoctorData doctorData = new DoctorData();
 
-                    doctorData.id = cursor.getInt(cursor.getColumnIndex(DOC_Fav_ID));
-                    doctorData.name = cursor.getString(cursor.getColumnIndex(NAME_F));
-                    doctorData.email = cursor.getString(cursor.getColumnIndex(EMAIIL));
+                    doctorData.doc_fav_id = cursor.getInt(0);
+                    doctorData.name_f = cursor.getString(1);
+                    doctorData.email = cursor.getString(2);
 
                     doctorsdetail.add(doctorData);
+                    System.out.println(doctorData);
                     cursor.moveToNext();
 
                 }
