@@ -70,6 +70,7 @@ public class CustomAdapterFav extends RecyclerView.Adapter<CustomAdapterFav.List
         holder.tv_name.setText(doc_name);
         holder.mobile.setText(dataList.get(position).email);
 
+
         //bundle.putString("Name",dataList.get(position).name);
 
         holder.iv_book.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +110,7 @@ public class CustomAdapterFav extends RecyclerView.Adapter<CustomAdapterFav.List
         Button iv_book;
         ImageView iv_whitefav;
 
+
         public ListViewHolder(View itemView) {
             super(itemView);
 
@@ -116,6 +118,7 @@ public class CustomAdapterFav extends RecyclerView.Adapter<CustomAdapterFav.List
             tv_name = (TextView) itemView.findViewById(R.id.textViewTV);
             mobile = (TextView) itemView.findViewById(R.id.mobile);
             iv_book= (Button) itemView.findViewById(R.id.imageViewbook);
+
 
         }
     }

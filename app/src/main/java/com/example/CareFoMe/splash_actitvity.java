@@ -19,6 +19,8 @@ public class splash_actitvity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("UserPref",MODE_PRIVATE);
        String email = sharedPreferences.getString("Email","default");
         String password = sharedPreferences.getString("Password","default");
+        System.out.println(email);
+        System.out.println(password);
         if(email != "default"  && password != "default"){
 
             startActivity(Home);

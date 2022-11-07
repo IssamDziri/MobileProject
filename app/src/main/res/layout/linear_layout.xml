@@ -138,6 +138,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"/>
                 <TextView
+                    android:id="@+id/mobilenumber"
                     android:text="Mobile"
                     android:layout_marginStart="10dp"
                     android:textSize="14sp"

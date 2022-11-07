@@ -65,6 +65,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ListViewHo
         holder.iv_whitefav.setTag(position);
         holder.tv_name.setText(doc_name);
         holder.tv_spec.setText(dataList.get(position).speciality);
+        holder.mobilenumber.setText(dataList.get(position).phone);
+
        //bundle.putString("Name",dataList.get(position).name);
 
         holder.iv_book.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +104,6 @@ mail=email;
                     System.out.println("nooooooooooooooooooooooooooooooooooooooooooooo");
                 }
                 else{
-
                     System.out.println("Record added");
                 }
                 System.out.println("#######################################"+fav);
@@ -124,6 +125,8 @@ mail=email;
         TextView tv_spec;
         Button iv_book;
         ImageView iv_whitefav;
+        TextView mobilenumber;
+
 
         public ListViewHolder(View itemView) {
             super(itemView);
@@ -133,6 +136,7 @@ mail=email;
             tv_spec = (TextView) itemView.findViewById(R.id.textViewSpec);
             iv_book= (Button) itemView.findViewById(R.id.imageViewbook);
             iv_whitefav= (ImageView) itemView.findViewById(R.id.imageViewWhiteFav);
+            mobilenumber =(TextView) itemView.findViewById(R.id.mobilenumber);
         }
     }
 

@@ -64,10 +64,7 @@ public static String eee;
                    Bundle bundle = new Bundle();
                     SharedPreferences sharedPreferences = getSharedPreferences("UserPref",MODE_PRIVATE);
 
-                    SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                    myEdit.putString("Email", Email);
-                    myEdit.putString("Password", Password);
-                    myEdit.commit();
+
 
 
                    // Intent intent = new Intent(LoginActivity.this, TimeSlots.class);
@@ -85,13 +82,18 @@ public static String eee;
 
 
 
-eee=email;
+                    eee=email;
 
 
 
                     }
                     NavDrawer.putExtra("username",Name);
                     NavDrawer.putExtra("Email",email);
+                    SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                    myEdit.putString("Email", Email);
+                    myEdit.putString("Password", Password);
+                    myEdit.putString("Name", Name);
+                    myEdit.commit();
 
                     startActivity(NavDrawer);
 
