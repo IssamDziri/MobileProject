@@ -61,6 +61,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ListViewHo
 
 
         final String doc_name = dataList.get(position).name;
+        this.email = dataList.get(position).phone;
         holder.iv_book.setTag(position);
         holder.iv_whitefav.setTag(position);
         holder.tv_name.setText(doc_name);

@@ -166,37 +166,37 @@ public class Appointment extends AppCompatActivity {
                 String ApTime ="";
                 if(R1.isChecked()){
                    ApTime="9:30 - 10:30";
-                   d3.DataInsert2(PName.getText().toString(),"",doc_name,PEmail.getText().toString(),DateD,ApTime);
+                   d3.DataInsert2(PName.getText().toString(),email,doc_name,PEmail.getText().toString(),DateD,ApTime);
 
 
                 }if(R2.isChecked()){
                     ApTime="10:30 - 11:30";
-                    d3.DataInsert2(PName.getText().toString(),"",doc_name,PEmail.getText().toString(),DateD,ApTime);
+                    d3.DataInsert2(PName.getText().toString(),email,doc_name,PEmail.getText().toString(),DateD,ApTime);
 
 
                 }if(R3.isChecked()){
                     ApTime="11:30 - 12:30";
-                    d3.DataInsert2(PName.getText().toString(),"",doc_name,PEmail.getText().toString(),DateD,ApTime);
+                    d3.DataInsert2(PName.getText().toString(),email,doc_name,PEmail.getText().toString(),DateD,ApTime);
 
 
                 }if(R4.isChecked()){
                     ApTime="2:00 - 3:00";
-                    d3.DataInsert2(PName.getText().toString(),"",doc_name,PEmail.getText().toString(),DateD,ApTime);
+                    d3.DataInsert2(PName.getText().toString(),email,doc_name,PEmail.getText().toString(),DateD,ApTime);
 
 
                 }if(R5.isChecked()){
                     ApTime="3:00 - 4:00";
-                    d3.DataInsert2(PName.getText().toString(),"",doc_name,PEmail.getText().toString(),DateD,ApTime);
+                    d3.DataInsert2(PName.getText().toString(),email,doc_name,PEmail.getText().toString(),DateD,ApTime);
 
 
                 }if(R6.isChecked()){
                     ApTime="4:00 - 5:00";
-                    d3.DataInsert2(PName.getText().toString(),"",doc_name,PEmail.getText().toString(),DateD,ApTime);
+                    d3.DataInsert2(PName.getText().toString(),email,doc_name,PEmail.getText().toString(),DateD,ApTime);
 
 
                 }if(R7.isChecked()){
                     ApTime="5:00 - 6:00";
-                    d3.DataInsert2(PName.getText().toString(),"",doc_name,PEmail.getText().toString(),DateD,ApTime);
+                    d3.DataInsert2(PName.getText().toString(),email,doc_name,PEmail.getText().toString(),DateD,ApTime);
 
 
                 }

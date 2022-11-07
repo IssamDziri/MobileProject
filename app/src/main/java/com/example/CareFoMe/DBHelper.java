@@ -131,10 +131,9 @@ public class DBHelper extends SQLiteOpenHelper
         Appointment.put(col11,date);
         Appointment.put(col12,time);
         sqLiteDatabase.insert(Table_name2,null,Appointment);
-
-
-
     }
+
+
     public boolean checkUser(String email,String password) {
 
         // array of columns to fetch
@@ -432,6 +431,52 @@ public class DBHelper extends SQLiteOpenHelper
         }
 
         return doctorsdetail;
+
+    }
+
+
+    public List<AppointementData> getAllAppointements()
+    {
+
+        List<AppointementData> appdetail = new ArrayList<>();
+
+        String SELECT_QUERY = "SELECT * FROM Appointment_table";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(SELECT_QUERY, null);
+
+        try {
+            if (cursor!=null) {
+                cursor.moveToFirst();
+
+                while(!cursor.isAfterLast()){
+                    AppointementData appData = new AppointementData();
+                    //full_name TEXT ,Phone_Number Text,Doc_name TEXT,Email_Id TEXT ,ADate TEXT,ATime TEXT
+
+                    //Dname
+                    //emailA
+                    //date
+                    //time
+                    appData.Appointment_id = cursor.getInt(0);
+                    appData.Pname = cursor.getString(1);
+                    appData.phNumber = cursor.getString(2);
+                    appData.Dname = cursor.getString(3);
+                    appData.emailA = cursor.getString(4);
+                    appData.date = cursor.getString(5);
+                    appData.time = cursor.getString(6);
+
+                    appdetail.add(appData);
+                    System.out.println(appData);
+                    cursor.moveToNext();
+
+                }
+            }
+        } catch (Exception e)
+        {
+            Log.d(TAG, "Error while trying to get posts from database"+ e.getMessage());
+        }
+
+        return appdetail;
 
     }
 
