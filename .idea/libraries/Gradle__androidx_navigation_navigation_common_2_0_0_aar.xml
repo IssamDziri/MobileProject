@@ -4,9 +4,9 @@
       <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/5f5fd18f9d20acec2ca3b4e476c477d2/navigation-common-2.0.0/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/5f5fd18f9d20acec2ca3b4e476c477d2/navigation-common-2.0.0/res" />
       <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/5f5fd18f9d20acec2ca3b4e476c477d2/navigation-common-2.0.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5f5fd18f9d20acec2ca3b4e476c477d2/navigation-common-2.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5f5fd18f9d20acec2ca3b4e476c477d2/navigation-common-2.0.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5f5fd18f9d20acec2ca3b4e476c477d2/navigation-common-2.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/48ea7a49698953cb1988414033952b67/transformed/navigation-common-2.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/48ea7a49698953cb1988414033952b67/transformed/navigation-common-2.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/48ea7a49698953cb1988414033952b67/transformed/navigation-common-2.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
